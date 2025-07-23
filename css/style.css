@@ -1,0 +1,141 @@
+/* UDO SANCTUS COLORS */
+:root {
+    --dark-blue: #0d1b2a;
+    --light-blue: #496ba8;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--white);
+}
+
+header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: var(--light-blue);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background-image: url("../images/hero-banner.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* dark overlay for readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.features {
+    padding: 30px;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.features ul{
+    list-style-position: inside;
+    padding: 0;
+    text-align: center;
+}
+
+.features ul li {
+    margin: 10px 0px;
+}
+
+footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 10px;
+}
+
+.contact-form {
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--dark-blue);
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--light-blue);
+    display: block;
+}
+
+.contact-form button {
+    margin-top: 15px;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: var(--light-blue);
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .hero {
+        height: 300px;
+    }
+
+    .features ul {
+        padding: 0 10px;
+    }
+}
