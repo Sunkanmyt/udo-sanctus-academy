@@ -25,7 +25,7 @@ def contact():
         email = request.form["email"]
         message = request.form["message"]
 
-        # Add data to database
+        # Add data to database  
         conn = sqlite3.connect("contact.db")
         cursor = conn.cursor()
         cursor.execute("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)", (name, email, message))
