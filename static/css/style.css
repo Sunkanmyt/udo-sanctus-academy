@@ -70,6 +70,9 @@ footer {
     color: var(--white);
     text-align: center;
     padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .contact-form {
@@ -116,6 +119,36 @@ footer {
 .contact-form input, .contact-form textarea {
     width: 100%;
     box-sizing: border-box;
+}
+
+.thankyou-container {
+      background: var(--white);
+      padding: 40px;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+}
+
+.thankyou-container h1 {
+      color: var(--dark-blue);
+      font-size:400%;
+}
+
+.thankyou-container a {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--white);
+      background-color: var(--dark-blue);
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+}
+
+.thankyou-container a:hover {
+      background-color: var(--light-blue);
 }
 
 @media (max-width: 768px) {

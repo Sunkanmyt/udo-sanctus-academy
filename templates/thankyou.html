@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | UDO SANCTUS ACADEMY</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Thank You | UDO SANCTUS ACADEMY</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <header>
@@ -12,14 +12,17 @@
         <nav>
             <a href="/">Home</a>
             <a href="/about">About</a>
-            <a href="/contact">Contact</a>
             <a href="/admissions">Admissions</a>
+            <a href="/contact">Contact</a>
         </nav>
     </header>
 
     <main>
-        <h2>Thank you, {{ name }}! Your message was received.</h2>
-        <a href="/">Return to homepage</a>
+        <div class="thankyou-container">
+            <h1>Thank you!</h1>
+            <p>Your message was received. We'll get back to you shortly.</p>
+            <a href="/">Return to Home</a>
+        </div>
     </main>
     
     <footer>
