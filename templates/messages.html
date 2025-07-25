@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | UDO SANCTUS ACADEMY</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>UDO SANCTUS ACADEMY</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/admissions">Admissions</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <main id="messages">
+        <h1>Submitted Messages</h1>
+        {% if messages %}
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                </tr>
+                {% for msg in messages %}
+                <tr>
+                    <td>{{ msg[0] }}</td>
+                    <td>{{ msg[1] }}</td>
+                    <td>{{ msg[2] }}</td>
+                    <td>{{ msg[3] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No messages yet.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 UDO SANCTUS ACADEMY. All rights reserved.</p>
+    </footer>
+</body>
+</html>

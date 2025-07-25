@@ -39,6 +39,16 @@ def contact():
 def thank_you():
     return render_template("thankyou.html")
     
+@app.route("/admin/messages")
+def view_messages():
+    conn = sqlite3.connect("contact.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name, email, message FROM messages")
+    messages = cursor.fetchall()
+    conn.close()
+
+    return render_template("messages.html", messages=messages)
+
 # DATABASE SETUP FUNCTION
 def init_db():
     conn = sqlite3.connect("contact.db")
