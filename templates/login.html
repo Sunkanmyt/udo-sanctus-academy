@@ -7,20 +7,10 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>UDO SANCTUS ACADEMY</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/admissions">Admissions</a>
-            <a href="/contact">Contact</a>
-        </nav>
-    </header>
-
     <main>
-        <section>
+        <section class="login">
             <form method="POST">
-                <h2>Admin Login</h2>
+                <h1>Admin Login</h1>
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         <p style="color: red;">{{ messages[0] }}</p>
@@ -36,9 +26,5 @@
             </form>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 UDO SANCTUS ACADEMY. All rights reserved.</p>
-    </footer>
 </body>
 </html>

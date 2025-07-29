@@ -17,19 +17,22 @@
     </header>
 
     <main>
-        <section class="admission-form">
-            <h2>APPLICATION FORM</h2>
+        <section class="contact-form">
+            <h1>Application Form</h1>
             <form action="/admissions" method="POST">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                <label for="student_name">Student Name:</label>
+                <input type="text" id="name" name="student_name" required>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label for="age">Age:</label>
+                <input type="number" name="age" required>
 
-                <label for="message">Your Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="grade">Grade:</label>
+                <input type="text" name="grade" required>
 
-                <button type="submit">Send Message</button>
+                <label for="gaurdian_contact">Parent/Guardian Contact:</label>
+                <input type="text" name="gaurdian_contact" required>
+
+                <button type="submit">Submit</button>
             </form>
         </section>
     </main>

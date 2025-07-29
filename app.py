@@ -17,7 +17,19 @@ def about():
 @app.route("/admissions", methods=["GET", "POST"])
 def admissions():
     if request == "POST":
-        pass
+        student_name = request.form["student_name"]
+        age = request.form["age"]
+        grade = request.form["grade"]
+        guardian_contact = request.form["guardian_contact"]
+
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO admissions (student_name, age, grade, guardian_contact) VALUES(?, ?, ?, ?)", (student_name, age, grade, guardian_contact))
+        conn.commit()
+        conn.close()
+        
+        flash("Admission")
+        return redirect("/thankyou")
     return render_template("admissions.html")
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -34,6 +46,7 @@ def contact():
         conn.commit()
         conn.close()
 
+        flash("message")
         return redirect("/thankyou") 
     return render_template("contact.html")
 
@@ -54,6 +67,11 @@ def view_messages():
 
     return render_template("messages.html", messages=messages)
 
+# @app.route("/admin/admissions")
+# def view_admissions():
+    
+#     return render_template("admissions.html")
+
 @app.route("/admin/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -62,7 +80,7 @@ def login():
 
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM admin_users WHERE username=? AND password=?", (username, password))
+        cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
         user = cursor.fetchone()
         conn.close()
         
@@ -85,6 +103,7 @@ def logout():
 def init_db():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
+
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -92,12 +111,23 @@ def init_db():
         email TEXT NOT NULL, 
         message TEXT NOT NULL)
     """)
+
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS admin_users (
+        CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
         username TEXT UNIQUE NOT NULL, 
         password TEXT NOT NULL)
     """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS admissions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        student_name TEXT NOT NULL,
+        age INTEGER NOT NULL,
+        grade TEXT NOT NULL,
+        guardian_contact TEXT NOT NULL)    
+    """)
+
     conn.commit()
     conn.close()
 
