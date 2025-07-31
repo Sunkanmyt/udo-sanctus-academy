@@ -16,7 +16,7 @@ def about():
 
 @app.route("/admissions", methods=["GET", "POST"])
 def admissions():
-    if request == "POST":
+    if request.method == "POST":
         student_name = request.form["student_name"]
         age = request.form["age"]
         grade = request.form["grade"]
@@ -28,8 +28,8 @@ def admissions():
         conn.commit()
         conn.close()
         
-        flash("Admission")
-        return redirect("/thankyou")
+        flash("application")
+        return redirect(url_for("thank_you"))
     return render_template("admissions.html")
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -53,7 +53,14 @@ def contact():
 @app.route("/thankyou")
 def thank_you():
     return render_template("thankyou.html")
+
+@app.route("/admin")
+def admin():
+    if not session.get("admin_logged_in"):
+        return redirect("/admin/login")
     
+    return render_template("admin.html")
+
 @app.route("/admin/messages")
 def view_messages():
     if not session.get("admin_logged_in"):
@@ -67,10 +74,20 @@ def view_messages():
 
     return render_template("messages.html", messages=messages)
 
-# @app.route("/admin/admissions")
-# def view_admissions():
+@app.route("/admin/applications")
+def view_applications():
+    if not session.get("admin_logged_in"):
+        return redirect(url_for("login"))
     
-#     return render_template("admissions.html")
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("""SELECT id, student_name, age, grade, guardian_contact 
+                   FROM admissions
+                   """)
+    applications =cursor.fetchall()
+    conn.close()
+
+    return render_template("applications.html", applications=applications)
 
 @app.route("/admin/login", methods=["GET", "POST"])
 def login():
@@ -80,13 +97,15 @@ def login():
 
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+        cursor.execute("""SELECT * FROM users 
+                       WHERE username=? 
+                       AND password=?""", (username, password))
         user = cursor.fetchone()
         conn.close()
         
         if user:
             session["admin_logged_in"] = True
-            return (redirect(url_for("view_messages")))
+            return (redirect(url_for("admin")))
         else:
             flash('Invalid credentials')
             # return redirect(url_for("login"))
@@ -97,7 +116,6 @@ def login():
 def logout():
     session.pop("admin_logged_in", None)
     return redirect(url_for("login"))
-
 
 # DATABASE SETUP FUNCTION
 def init_db():
@@ -130,7 +148,6 @@ def init_db():
 
     conn.commit()
     conn.close()
-
 
 # MUST RUN BEFORE THE START OF APP TO INITIALIZE THE DATABASE
 init_db()
